@@ -163,12 +163,12 @@ class BaseSorter:
             json.dump(check_json(all_params), f, indent=4)
 
     @classmethod
-    def setup_recording(cls, recording, output_folder, verbose):
+    def setup_recording(cls, recording, output_folder, verbose, **kwargs):
         output_folder = Path(output_folder)
         with (output_folder / 'spikeinterface_params.json').open(mode='r', encoding='utf8') as f:
             all_params = json.load(f)
             sorter_params = all_params['sorter_params']
-        cls._setup_recording(recording, output_folder, sorter_params, verbose)
+        cls._setup_recording(recording, output_folder, sorter_params, verbose, **kwargs)
 
     @classmethod
     def run_from_folder(cls, output_folder, raise_error, verbose):

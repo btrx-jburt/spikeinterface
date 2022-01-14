@@ -57,15 +57,15 @@ class PyKilosortSorter(BaseSorter):
         return params
 
     @classmethod
-    def _setup_recording(cls, recording, output_folder, params, verbose):
+    def _setup_recording(cls, recording, output_folder, params, verbose, **kwargs):
         probe = recording.get_probe()
 
         # local copy
-        recording.save(format='binary', folder=output_folder / 'bin_folder')
+        recording.save(format='binary', folder=output_folder / 'bin_folder', **kwargs)
 
     @classmethod
     def _run_from_folder(cls, output_folder, params, verbose):
-        recording = load_extractor(output_folder / 'spikeinterface_recording.json')
+        recording = load_extractor(output_folder / 'bin_folder')
 
         assert isinstance(recording, BinaryRecordingExtractor)
         assert recording.get_num_segments() == 1
