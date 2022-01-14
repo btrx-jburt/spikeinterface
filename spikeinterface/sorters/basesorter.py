@@ -105,7 +105,7 @@ class BaseSorter:
             if remove_existing_folder:
                 shutil.rmtree(str(output_folder))
             else:
-                raise warnings.warn(
+                warnings.warn(
                     f'Folder {output_folder} already exists '
                     f'but remove_existing_folder=False')
         output_folder.mkdir(parents=True, exist_ok=True)
