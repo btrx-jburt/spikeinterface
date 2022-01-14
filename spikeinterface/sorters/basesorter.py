@@ -99,12 +99,14 @@ class BaseSorter:
         #  .absolute() not anymore
         output_folder = Path(output_folder)
 
+        # should really have an exist_ok kwarg or something analogous
         if output_folder.is_dir():
             if remove_existing_folder:
                 shutil.rmtree(str(output_folder))
             else:
-                raise ValueError(f'Folder {output_folder} already exists')
-
+                raise RuntimeWarning(
+                    f'Folder {output_folder} already exists '
+                    f'but remove_existing_folder=False')
         output_folder.mkdir(parents=True, exist_ok=True)
 
         if recording.get_num_segments() > 1:
